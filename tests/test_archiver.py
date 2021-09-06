@@ -17,7 +17,7 @@ def directory_to_archive():
     path = Config.TMP_PATH / TEST_DIRECTORY
     dir_exists = path.exists() and path.is_dir()
     if not dir_exists:
-        path.mkdir()
+        path.mkdir(parents=True)
     file_path = path / TEST_FILE_NAME
     with open(file_path, 'w') as f:
         f.writelines("archiver test file")
