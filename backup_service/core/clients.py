@@ -22,6 +22,11 @@ class SupportUploadToCloud(Protocol):
         raise NotImplementedError
 
 
+class MockClient(SupportUploadToCloud):
+    def upload(self, file_path: Path):
+        pass
+
+
 class DropboxClient(SupportUploadToCloud):
     def __init__(self, app_key: str, refresh_token: str):
         self.app_key = app_key

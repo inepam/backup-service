@@ -10,6 +10,7 @@ def config_decorator(class_):
     class_.TMP_PATH = base_path / 'tmp'
 
     with open(class_.BASE_PATH / f"config.yaml", "r") as fp:
+        # TODO: implement different configs for different environments
         yaml_config = yaml.load(fp, Loader=yaml.CBaseLoader)
 
     class_.USERNAME = yaml_config['username']

@@ -7,10 +7,9 @@ from config import Config
 from core.backuper import Backuper, BackupError
 
 
-def create_app(config_object: str = "config.ProductionConfig"):
+def create_app(backuper: Backuper, config_object: str = "config.ProductionConfig"):
     app = Flask(__name__)
     app.config.from_object(config_object)
-    uploader = Backuper()
     logging.basicConfig(level=logging.DEBUG)
     logger = logging.getLogger('app')
 
@@ -31,7 +30,7 @@ def create_app(config_object: str = "config.ProductionConfig"):
             password = request.authorization.password
             if username == Config.USERNAME and check_password_hash(Config.PASSWORD, password):
                 try:
-                    uploader.backup_directory(path)
+                    backuper.backup_directory(path)
                 except BackupError:
                     logger.error('Upload error.', exc_info=True)
                     return "Server error", 500
@@ -45,5 +44,5 @@ def create_app(config_object: str = "config.ProductionConfig"):
 
 
 if __name__ == "__main__":
-    dev_app = create_app("config.DevelopmentConfig")
+    dev_app = create_app(Backuper(), "config.DevelopmentConfig")
     dev_app.run()

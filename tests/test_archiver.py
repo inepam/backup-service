@@ -12,7 +12,7 @@ TEST_DIRECTORY: str = "test_directory"
 TEST_FILE_NAME: str = "test_file"
 
 
-@pytest.fixture()
+@pytest.fixture
 def directory_to_archive():
     path = Config.TMP_PATH / TEST_DIRECTORY
     dir_exists = path.exists() and path.is_dir()
