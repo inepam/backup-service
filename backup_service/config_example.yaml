@@ -1,0 +1,7 @@
+user:
+  username: "johndoe"
+  password: "password hash"
+cloud_storages:
+  - dropbox:
+      app_key: "DROPBOX_APP_KEY"
+      refresh_token: "REFRESH_TOKEN"
